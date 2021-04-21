@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    </head>
+    <body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <div class="property-entry">
+    <img src="http://muhu-photo-storage1.s3.amazonaws.com/static/{{ property.photo }}" height="20%" alt="{{ property.address }}" />
+    <p>${{property.rent}}/m</p>
+    <p>Number of bedrooms: {{property.num_bed}}</p>
+    <p>Number of bathrooms: {{property.num_bath}}</p>
+    <p>Address: {{property.address}}</p>    
+    </div>
+    <p><a href="{% url 'rental_edit' property.pk %}">+ Edit Rental Details</a></p> 
+    <p><a href="{% url 'rental_delete' property.pk %}">+ Delete Rental</a></p>    
+    <p>
+        <p>Back to <a href="{% url 'rental_list' %}">Rental List</a></p>
+        <a href="{% url 'application_new' property.pk %}">Apply for this property </a>
+    </p>
+    {% endblock content %}
+    </body>
+</html>

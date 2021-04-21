@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Rental List{% endblock title %} 
+
+{% block content %} 
+    {% for property in object_list %}
+    <div class="property-entry"> &nbsp;          
+        <p><img src="http://muhu-photo-storage1.s3.amazonaws.com/static/{{ property.photo }}" width="20%" alt="">
+        <span class="font-weight-bold"><a href="{% url 'rental_detail' property.pk %}">{{ property.address }}</a></span> &middot;</p>
+    </div>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    </head>
+    <body>
+{% extends 'base.html'%}
+
+
+    {% block content %}
+    <h2>New Rental Form</h2>
+    {% if submitted %}
+        <p class="success">
+            Your application was submitted successfully. Thank you.
+        </p>
+    {% else %}
+        <form action="" enctype="multipart/form-data" method="POST" novalidate="">
+        
+            {{form.as_p}}
+            <table>
+                <tbody>
+                    <tr>
+                    <td>&nbsp; </td>
+                    <td><input type="submit" value="Submit"></td>
+                     </tr>
+                </tbody>
+            </table>
+        {% csrf_token %}
+         </form>
+    {% endif %}
+    {% endblock content %}
+    </body>
+</html>

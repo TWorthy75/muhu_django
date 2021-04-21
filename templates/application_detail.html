@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="object-entry">
+    <h2>{{ object.applicant }} | {{ object.property_apply }} | {{ object.app_date }}</h2>
+    <h4>Renter Information</h4>
+    <p>SSN: {{ object.social_Security_Number }} |
+       DOB: {{ object.date_of_Birth }} |
+        {{ object.email }}</p>    
+    <p>Move in Date: {{ object.move_in_Date }}</p>    
+    <p>Occupant 1: {{ object.occupant1 }}</p>
+    <p>SSN: {{ object.social_Security_Number1 }} |
+        DOB: {{ object.date_of_Birth1 }} |
+         {{ object.email1 }}</p>
+    <p>Occupant 2: {{ object.occupant2 }}</p>
+    <p>SSN: {{ object.social_Security_Number2 }} |
+        DOB: {{ object.date_of_Birth2 }} |
+         {{ object.email2 }}</p>         
+</div>
+<div>
+    <h4>Employment</h4>
+    <p>Employer: {{ object.cur_employer_name }}</p>
+    <p>Address: {{ object.cur_employer_address }}</p>
+    <p>Phone: {{ object.cur_employer_phone }}</p>
+    <p>Length of Employment: {{ object.cur_length_of_time }}</p>
+    <p>Position: {{ object.position }} | 
+        Supervisor: {{ object.supervisor }}</p>
+    <p>Income: ${{ object.income }} | 
+        Income Frequency: {{ object.income_Frequency }}</p>
+</div>
+<div>
+    <h4>Former Employment</h4>
+    <p>Employer: {{ object.former_Employer }}</p>
+    <p>Address: {{ object.former_Employer_Address }}</p>
+    <p>Phone: {{ object.former_Employer_Phone }}</p>
+    <p>Length of Employment: {{ object.former_Length_Of_Employment }}</p>
+    <p>Position: {{ object.pre_Position }} | 
+        Supervisor: {{ object.pre_supervisor }}</p>
+    <p>Income: ${{ object.pre_approx_income }} | 
+        Income Frequency: {{ object.former_Income_Frequency }}</p>    
+</div>
+<div>
+    <h4>Other Income</h4>
+    <p>Other Income: ${{ object.other_Income }} | 
+        Income Source: {{ object.income_Source }}</p> 
+</div>
+<div>
+    <h4>Pets</h4>
+    <p>Pets: {{ object.pets }}</p>
+    <p>Number of Pets: {{ object.number_of_Pets }}</p>
+    <p>Kind of Pets: {{ object.kind_of_Pet }}</p>
+</div>
+<div>
+    <h4>Current Address</h4>
+    <p>Address: {{ object.current_Address }}</p>
+    <p>City: {{ object.current_City }} , {{ object.current_State }} {{ object.current_Zip }}</p>
+    <p>Length at Address: {{ object.current_Length_at_Address }} | Own: {{ object.currently_Own }} | Lease: {{ object.currently_Lease }}</p>
+    <p>Lease Expiration: {{ object.current_Lease_Expiration }}</p>
+    <p>Payee: {{ object.current_Payee }} | Payee Phone: {{ object.current_Payee_Phone }}</p>
+</div>
+<div>
+    <h4>Former Address</h4>
+    <p>Address: {{ object.former_Address }}</p>
+    <p>City: {{ object.former_City }} , {{ object.former_State }} {{ object.former_Zip }}</p>
+    <p>Length at Address: {{ object.former_Length_at_Address }} | Own: {{ object.former_Own }} | Lease: {{ object.former_Lease }}</p>
+    <p>Lease Expiration: {{ object.former_Lease_Expiration }}</p>
+    <p>Payee: {{ object.former_Payee }} | Payee Phone: {{ object.former_Payee_Phone }}</p>    
+</div>
+<div>
+    <h4>Eviction\Foreclosure</h4>
+    <p>Eviction: {{ object.eviction }} | Foreclosure: {{ object.foreclosure }}</p>
+    <p>Explanation: {{ object.explanation }}</p>
+</div>
+<div>
+    <h4>Emergency Contact Information</h4>
+    <p>Name: {{ object.emergency_Contact_Name }} | Relationship: {{ object.relationship }}</p>
+    <p>Phone: {{ object.emergency_Contact_Phone }} | Email: {{ object.emergency_Contact_Email }}</p>
+    <p>Address: {{ object.emergency_Contact_Address }}</p>
+    <p>City: {{ object.emergency_Contact_City }}, {{ object.emergency_Contact_State }} {{ object.emergency_Contact_Zip }}</p>
+    <p><img src="http://muhu-photo-storage1.s3.amazonaws.com/static/{{ object.file }}" height="20%" width="20%" alt=""></p>
+</div>
+    <p>Back to <a href="{% url 'application_edit' object.pk %}">Edit Application</a></p>    
+    <p>
+        {% if perms.rentals.view_application %}        
+        <a href="{% url 'admin_application_list' %}">Application List</a>
+        {% else %}
+        <p>Back to <a href="{% url 'user_application_list' %}">Application List</a></p>
+        {% endif %}
+    </p>
+    
+
+
+{% endblock content %}

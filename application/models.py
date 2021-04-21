@@ -1,0 +1,92 @@
+from django.db import models
+from django.urls import reverse
+from users.models import CustomUser
+from rentals.models import Property
+
+class Application(models.Model):
+    application_id = models.AutoField(primary_key=True)
+    property_apply= models.ForeignKey(Property, on_delete=models.CASCADE)
+    applicant = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    app_date = models.DateField(auto_now=True, auto_now_add=False, null=True, blank=True)
+    social_Security_Number = models.CharField("Social Security Number", max_length=10)
+    date_of_Birth = models.DateField("Date of Birth") 
+    email = models.CharField("Email Address", max_length=50)
+    move_in_Date = models.DateField("Move in Date")
+    occupant1 = models.CharField("Occupant Name", max_length=100, blank=True, null=True)
+    social_Security_Number1 = models.CharField("Social Security Number", max_length=10, blank=True, null=True)
+    date_of_Birth1 = models.DateField("Date of Birth", blank=True, null=True) 
+    email1 = models.CharField("Email Address", max_length=50, blank=True, null=True)
+    occupant2 = models.CharField("Occupant Name", max_length=100, blank=True, null=True)
+    social_Security_Number2 = models.CharField("Social Security Number", max_length=10, blank=True, null=True)
+    date_of_Birth2 = models.DateField("Date of Birth", blank=True, null=True)
+    email2 = models.CharField("Email Address",max_length=50, blank=True, null=True)
+    cur_employer_name = models.CharField("Employer", max_length= 30, null= True, blank= True)
+    cur_employer_address = models.CharField("Employer Address", max_length=50, null= True, blank= True)
+    cur_employer_phone= models.CharField("Employer Phone", max_length=10)
+    cur_length_of_time = models.CharField("Length of Employment", max_length=10)
+    position = models.CharField("Position", max_length=30)
+    supervisor = models.CharField("Supervisor", max_length=100)
+    income = models.IntegerField("Income")
+    income_Frequency = models.CharField("Income Frequency", max_length=12, blank=True, null=True)
+    former_Employer = models.CharField("Former Employer", max_length=75, blank=True, null=True)
+    former_Employer_Address = models.CharField("Employer Address", max_length=350, blank=True, null=True)
+    former_Employer_Phone = models.CharField("Employer Phone", max_length=20, blank=True, null=True)
+    pre_position= models.CharField("Former Position", max_length=30)
+    pre_length_of_time= models.CharField("Length of Employment", max_length=10)    
+    pre_supervisor = models.CharField("Supervisor", max_length=30)
+    pre_approx_income= models.DecimalField("Income", max_digits=8, decimal_places=2, blank=True, null=True)
+    former_Income_Frequency = models.CharField("Income Frequency", max_length=12, blank=True, null=True)
+    other_Income = models.IntegerField("Other Income", blank=True, null=True)
+    income_Source = models.CharField("Income Source", max_length=51, blank=True, null=True)
+    pets = models.BooleanField("Pets")
+    number_of_Pets = models.IntegerField("Number of Pets", blank=True, null=True)
+    kind_of_Pet = models.CharField("Kind of Pets", max_length=25, blank=True, null=True)
+    current_Address = models.CharField("Current Address", max_length=100)
+    current_City = models.CharField("City", max_length=30)
+    current_State = models.CharField("State", max_length=2)
+    current_Zip = models.CharField("Zip Code", max_length=10)
+    current_Length_at_Address = models.CharField("Length at Address", max_length=25)
+    currently_Own = models.BooleanField('Own')
+    currently_Lease = models.BooleanField('Lease')
+    current_Lease_Expiration = models.DateField("Lease Expiration", blank=True, null=True)
+    current_Payee = models.CharField("Payee", max_length=40)
+    current_Payee_Phone = models.CharField("Payee Phone", max_length=12)
+    former_Address = models.CharField("Former Address", max_length=100, blank=True, null=True)
+    former_City = models.CharField("City", max_length=30, blank=True, null=True)
+    former_State = models.CharField("State", max_length=2, blank=True, null=True)
+    former_Zip = models.CharField("Zip Code", max_length=10, blank=True, null=True)
+    former_Length_at_Address = models.CharField("Length at Address",max_length=25, blank=True, null=True)
+    former_Own = models.BooleanField('Own')
+    former_Lease = models.BooleanField('Lease')       
+    former_Lease_Expiration = models.DateField("Lease Expiration", blank=True, null=True)
+    former_Payee = models.CharField("Payee", max_length=40, blank=True, null=True)
+    former_Payee_Phone = models.CharField("Payee Phone", max_length=12, blank=True, null=True)
+    eviction = models.BooleanField('Eviction')
+    foreclosure = models.BooleanField('Foreclosure')
+    explanation = models.TextField("Explanation", max_length=250, blank=True, null=True)
+    emergency_Contact_Name = models.CharField("Emergency Contact", max_length=40)
+    relationship = models.CharField("Relationship", max_length=20)
+    emergency_Contact_Phone = models.CharField("Phone", max_length=15)
+    emergency_Contact_Email = models.CharField("Email Address", max_length=50)
+    emergency_Contact_Address = models.CharField("Address",max_length=100)
+    emergency_Contact_City = models.CharField("City", max_length=50)
+    emergency_Contact_State = models.CharField("State", max_length=2)
+    emergency_Contact_Zip = models.CharField("Zip Code", max_length=10)
+    file= models.ImageField("Browse files to upload", upload_to='static/media/images/applicationdetail', blank= True, null= True)
+
+    
+    def __repr__(self):
+        return '<Applicant {}>'.format(self.application_id)
+
+    def get_absolute_url(self):
+        return reverse('application_detail', args=[str(self.pk)])
+    
+
+class ApplicationAttachment(models.Model):
+    propty= models.ForeignKey(Property, on_delete = models.CASCADE)
+    AppID = models.ForeignKey(Application, on_delete=models.CASCADE)
+    title = models.TextField(null = True, blank = True)
+    file= models.ImageField("Browse files to upload", upload_to='static/media/images/applicationdetail', blank= True, null= True)
+
+
+# Create your models here.

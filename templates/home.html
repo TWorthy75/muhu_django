@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">MUHU Rentals</h1>
+    <p class="lead">Browse and Apply for Rentals</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{% url 'rental_list' %}" role="button">View All Rentals</a>
+    </p>
+    <p class="lead">
+        {% if perms.rentals.view_application %}        
+        <a class="btn btn-primary btn-lg" href="{% url 'admin_application_list' %}" role="button">View Applications</a>
+        {% else %}
+        <p>
+            <a class="btn btn-primary btn-lg" href="{% url 'user_application_list' %}" role="button">View Your Application</a>       
+        </p>
+        {% endif %}
+    </p>
+</div>
+     
+{% endblock content %}

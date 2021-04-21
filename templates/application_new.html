@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    </head>
+    <body>
+{% extends 'base.html'%}
+
+    {% block content %}
+    <h2>Rental Applicaiton Guidelines</h2>
+    <div>
+        <p>
+            You will be denied rental if you misrepresent any information on this application. If misrepresentations are found after a 
+            rental agreement is signed, your rental agreement may be terminated at Landlord’s discretion.
+        </p>
+        <p>
+           <b>APPLICANT</b> –All adult applicants (18 years or older) must complete a separate application for rental. The application 
+            processing fee is $35 for each applicant. This fee must be paid in cash or certified funds. This fee is non-refundable.
+            Please provide the following information in full for your application to be processed in a timely manner:
+        </p>
+        <p>
+          <b>ID</b> - Provide a copy of a valid state or government issued picture identification for each applicant 18 years
+            and older.
+        </p>
+        <p>
+          <b>INCOME INFORMATION</b> - Include name of supervisor, length of employment, telephone number and a copy of one month’s 
+            most recent pay stub.
+        </p>
+        <p>
+        <b>OTHER</b> - You may also include any other documentation that may support your application, such as benefit statements, 
+            letter(s) of employment, letter(s) of recommendation, and bank statements.
+        </p>
+        <p>
+         <b>Contact information:</b><br>
+            Lily Ma <br>
+            Cell phone: 816-726-4158 <br>
+            email: <a href="mailto: lily@muhufund.com">lily@muhufund.com</a> 
+        </p>
+        <p>
+            Thank you for considering renting from us.
+        </p>
+    </div>
+    <h2>Please fill the application form</h2>
+    {% if submitted %}
+        <p class="success">
+            Your application was submitted successfully. Thank you.
+        </p>
+    {% else %}
+        <form action="" enctype="multipart/form-data" method="POST" novalidate="">
+        
+            {{form.as_p}}
+            <div>
+        <p>FALSE INFORMATION GIVEN ON AN APPLICATION IS IN ITSELF GROUNDS FOR REJECTION OF THE APPLICATION OR TERMINATION OF TENANCY.</p>
+        <p><b>Authorization for Release of Information</b></p>
+        <p> I authorize without reservation, any party (including, but not limited to, employers, law enforcement agencies, state agencies, 
+            institutions and private information bureaus or repositories) contacted by prospective property manager or property owner to furnish 
+            any or all of the above mentioned information. I release and discharge all liability from all companies, agencies, officials, officers, 
+            employees and other persons, who, in good faith provide to prospective property manager or property owner the above mentioned 
+            information as requested, in order to successfully complete a background investigation of my rental application. I will allow a photocopy 
+            of this authorization to be as valid as the original.</p> 
+        <p>    
+            Date: ___________________________ Applicant’s Signature: ______________________________ <br>
+            Home Phone: ____________________ Work Phone: _____________________ <br></p>
+            
+        <p>Equal Housing Opportunity</p> 
+            </div>
+            <table>
+                <tbody>
+                    <tr>
+                    <td>&nbsp; </td>
+                    <td><input type="submit" value="Submit"></td>
+                     </tr>
+                </tbody>
+            </table>
+        {% csrf_token %}
+         </form>
+    {% endif %}
+    {% endblock content %}
+    </body>
+</html>

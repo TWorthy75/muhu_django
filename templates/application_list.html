@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Application List{% endblock title %} 
+
+{% block content %} 
+    {% for application in object_list %}
+    <div class="application-entry"> &nbsp;    
+        <p><img src="http://muhu-photo-storage1.s3.amazonaws.com/static/{{ application.file }}" width="20%" alt=""></p>      
+        <p><span class="font-weight-bold"><a href="{% url 'application_detail' application.pk %}">{{ application.applicant }}</a></span> &middot;</p>
+    </div>
+    {% endfor %}
+{% endblock content %}
